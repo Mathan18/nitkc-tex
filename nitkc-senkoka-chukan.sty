@@ -1,0 +1,42 @@
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{nitkc-senkoka-chukan}
+
+% フォントサイズ指定，行送りの値は適当
+\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{30}}
+\newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{10}{14}}
+\newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{9}{13}}
+\newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{9}{13}}
+\newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeAffiliate}{11}{14}}
+\newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
+
+% 和文はイタリックの代わりにオブリークを使う
+\def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
+
+% 研究室名，キーワード受け取り
+\def\affiliate#1{\gdef\@affiliate{#1}}\def\@affiliate{}
+\def\keywords#1{\gdef\@keywords{#1}}\def\@keywords{}
+
+% タイトル部のフォーマット変更，本文の2段組指定
+\renewcommand{\maketitle}{
+    \twocolumn[
+        \begin{center}
+            {\FontsizeTitle \gtfamily\bfseries \textbf{\@title}} \\
+            \vskip 10\jsc@mpt
+            {\FontsizeAuthor {\@author}*} \\
+            {\FontsizeAffiliate \@affiliate} \\
+            \vskip 10\jsc@mpt
+            {\FontsizeKeywords \jptextit{\mcfamily\bfseries キーワード} : \@keywords} \\
+        \end{center}
+    ]
+}
+
+% \sectionの見出しのフォーマット変更
+\makeatletter
+\renewcommand{\section}{
+    \@startsection{section}{1}
+    {\z@}% #3 見出し左の空き
+    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
+    {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
+    {\centering \FontsizeSection \gtfamily\bfseries}% 中央揃え，フォントサイズ変更，フォント変更
+}
+\makeatother

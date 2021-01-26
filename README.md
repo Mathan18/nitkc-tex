@@ -1,7 +1,8 @@
 # nitkc-tex
 
 高知高専のTeXフォーマットです．  
-[jsclasses](https://github.com/texjporg/jsclasses)をもとにして作成されています．
+[jsclasses](https://github.com/texjporg/jsclasses)をもとにして作成されています．  
+フォントは[原ノ味フォント](https://github.com/trueroad/HaranoAjiFonts)を使用しています．
 
 ## 動作環境
 
