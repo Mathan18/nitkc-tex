@@ -1,0 +1,227 @@
+%% 
+%% This is file `knct-abstract.sty',
+%% 
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from knct-abstract.sty.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{knct-abstract}
+\typeout{ 高知工業高等専門学校 電気情報工学科 学位論文概要スタイルファイル}
+\typeout{ $Id: knct-abstract.sty [version 1.0.0], 2004/01/10$}
+%%%%%%%%%%%%%%% Redefine Command & Environment %%%%%%%%%%%%%%%%
+%\def\@startsection#1#2#3#4#5#6{%
+%  \if@noskipsec \leavevmode \fi
+%  \par
+%  \@tempskipa #4\relax
+%  \@afterindenttrue
+%  \ifdim \@tempskipa <\z@
+%    \@tempskipa -\@tempskipa \@afterindentfalse
+%  \fi
+%  \if@nobreak
+%    \everypar{\everyparhook}%
+%  \else
+%    \addpenalty\@secpenalty\addvspace\@tempskipa
+%  \fi
+%  \@ifstar
+%    {\@ssect{#3}{#4}{#5}{#6}}%
+%    {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+    {2\Cdp}{\Cdp}{\normalfont\large\rmfamily\gtfamily\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+    {2\Cdp}{\Cdp}{\normalfont\normalsize\rmfamily\gtfamily\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+    {2\Cdp}{\Cdp}{\normalfont\normalsize\rmfamily\gtfamily\bfseries}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+    {2\Cdp}{-1zw}{\normalfont\normalsize\rmfamily\gtfamily\bfseries ■}}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}{\z@}%
+    {2\Cdp}{-1zw}{\normalfont\normalsize\rmfamily\gtfamily\bfseries}}
+\long\def\@makecaption#1#2{{\small
+  \advance\leftskip1cm
+  \advance\rightskip1cm
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{#1\hspace{1zw}#2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #1\hspace{1zw}#2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi
+  \vskip\belowcaptionskip}}
+%%%%%%%%%%%%%%%%%%%%% New Environment %%%%%%%%%%%%%%%%%%%%%%
+\newif\ifDoctorate
+\let\ifDoctorate=\iffalse
+\def\Doctorate{\let\ifDoctorate=\iftrue}
+\newif\ifMaster
+\let\ifMaster=\iffalse
+\def\Master{\let\ifMaster=\iftrue}
+\newif\ifBachelor
+\let\ifBachelor=\iffalse
+\def\Bachelor{\let\ifBachelor=\iftrue}
+\newif\ifAssociate
+\let\ifAssociate=\iffalse
+\def\Associate{\let\ifAssociate=\iftrue}
+\newif\ifSeminar
+\let\ifSeminar=\iffalse
+\def\Seminar{\let\ifSeminar=\iftrue}
+\let\ifEnglish=\iffalse
+\def\English{\let\ifEnglish=\iftrue}
+\def\years#1{\gdef\@years{#1}}\def\@years{}
+\def\Eyears#1{\gdef\@Eyears{#1}}\def\@Eyears{}
+\def\Etitle#1{\gdef\@Etitle{#1}}\def\@Etitle{}
+\def\idnumber#1{\gdef\@idnumber{#1}}\def\@idnumber{}
+\def\Eauthor#1{\gdef\@Eauthor{#1}}\def\@Eauthor{}
+\def\affiliate#1{\gdef\@affiliate{#1}}\def\@affiliate{}
+\def\Eaffiliate#1{\gdef\@Eaffiliate{#1}}\def\@Eaffiliate{}
+\newenvironment{Abstract}{%
+  \begin{normalsize}%
+    \ifEnglish
+      \setlength\parindent{\@Eindent}%
+      \renewcommand{\@title}{\@Etitle}%
+      \renewcommand{\@author}{\@Eauthor}%
+      \renewcommand{\@affiliate}{\@Eaffiliate}%
+    \else
+      \setlength\parindent{\@Jindent}%
+    \fi
+    \setlength\baselineskip{14pt}%
+    \twocolumn[%
+      \begin{center}%
+        {\Large\textbf{\@title}} \par
+        \vskip 1.5zh
+        {\large
+          \begin{tabular}{c}%
+            \@idnumber\hskip 1.5zw
+            \@author\hskip 1.5zw
+            【\hskip .5zw\@affiliate\hskip .5zw 】
+          \end{tabular}} \par%
+        \ifEnglish \else
+          \ifDoctorate
+            \vskip 2zh
+            {\Large\textbf{\@Etitle}} \par
+            \vskip 1.5zh
+            {\large
+              \begin{tabular}{c}%
+                \@idnumber\hskip 1.5zw
+                \@Eauthor\hskip 1.5zw
+               【\hskip .5zw\@Eaffiliate\hskip .5zw 】
+              \end{tabular}} \par%
+            \vskip 1zh \par
+%% 上の行（\vskip 2zh）を2007/01/31変更
+          \else\ifMaster
+            \vskip 2zh
+            {\Large\textbf{\@Etitle}} \par
+            \vskip 1.5zh
+            {\large
+              \begin{tabular}{c}%
+                \@idnumber\hskip 1.5zw
+                \@Eauthor\hskip 1.5zw
+               【\hskip .5zw\@Eaffiliate\hskip .5zw 】
+              \end{tabular}} \par%
+            \vskip 1zh \par
+%% 上の行（\vskip 2zh）を2007/01/31変更
+          \fi\fi
+        \fi
+        \vskip 2zh \par
+%% 上の行（\vskip 1zh）を2007/01/31変更
+     \end{center}]}%
+  {\end{normalsize}}
+\def\ps@myheadings{%
+  \let\@oddfoot\@empty\let\@evenfoot\@empty
+  \def\@evenhead{\thepage\hfil\leftmark}%
+  \def\@oddhead{{\rightmark}
+    \ifEnglish
+      \footnotesize
+      \@Eyears\@Eposteraname \hskip .5zw
+      \ifDoctorate         \@Edoctorateabstractname\hfil \@Edoctoratecourse
+      \else\ifMaster       \@Emasterabstractname   \hfil \@Emastercourse
+      \else\ifBachelor     \@Ebachelorabstractname \hfil \@Ebachelordept
+      \else                \@Eassociateabstractname \hfil \@Eassociatedept
+      \fi\fi\fi
+    \else
+      \small
+      \@years\@posteraname \hskip .5zw
+      \ifDoctorate         \@doctorateabstractname\hfil \@doctoratecourse
+      \else\ifMaster       \@masterabstractname   \hfil \@mastercourse
+      \else\ifBachelor     \@bachelorabstractname \hfil \@bachelordept
+      \else\ifSeminar      \@seminarabstractname  \hfil \@bachelordept
+      \else                \@associateabstractname \hfil \@associatedept
+      \fi\fi\fi\fi
+    \fi}%
+  \let\@mkboth\@gobbletwo
+  \let\sectionmark\@gobble
+  \let\subsectionmark\@gobble
+}
+%%%%%%%%%%%%%%%%%%% New Command & Macro %%%%%%%%%%%%%%%%%%%%
+\def\Hline{\noalign{\ifnum0=`}\fi
+  \hrule \@height 3\arrayrulewidth \futurelet \@tempa\@xhhline}
+\def\@xhhline{\ifx\@tempa\Hline\vskip \doublerulesep\fi \ifnum0=`{\fi}}
+\newcommand{\up}[1]{\hspace*{-.1zw}\raisebox{.4zh}%
+  {\footnotesize{\kern 0cm{#1}}}}
+\newcommand{\lw}[1]{\smash{\lower2.ex\hbox{#1}}}
+\newcommand{\MARU}[1]{{%
+  \ooalign{\hfil#1\/\hfil\crcr\raise.167ex\hbox{\mathhexbox20D}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Indent %%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@Jindent{1\Cwd}
+\def\@Eindent{2em}
+%%%%%%%%%%%%%%%%%%%% Language setting %%%%%%%%%%%%%%%%%%%%%%
+\def\@posteraname{年度}
+\def\@doctorateabstractname{博士学位論文概要}
+\def\@doctoratecourse{高知工業高等専門学校大学院 工学研究科 機械・電気工学専攻}
+\def\@masterabstractname{修士学位論文概要}
+\def\@mastercourse{高知工業高等専門学校大学院 工学研究科 機械・電気工学専攻}
+%\def\@bachelorabstractname{学士学位論文概要}
+\def\@bachelorabstractname{特別研究論文概要}
+\def\@associateabstractname{卒業研究論文概要}
+\def\@seminarabstractname{特別研究セミナー課題研究報告書 概要}
+\def\@bachelordept{高知工業高等専門学校 専攻科　機械・電気工学専攻}
+\def\@associatedept{高知工業高等専門学校 電気情報工学科}
+\def\@Eposteraname{:}
+\def\@Edoctorateabstractname{Doctorate thesis Abstract}
+\def\@Edoctoratecourse{Course of Mechanical and Electrical Engineering, Graduate School of Engineering, Kochi National College of Technology}
+\def\@Emasterabstractname{Master's thesis Abstract}
+\def\@Emastercourse{Course of Mechanical and Electrical Engineering, Graduate School of Engineering, Kochi National College of Technology}
+\def\@Ebachelorabstractname{Bachelor's thesis Abstract}
+\def\@Ebachelordept{Advanced Course in Mechanical and Electrical Engineering , Kochi National College of Technology}
+\def\@Eassociateabstractname{Associate of Engineering's thesis Abstract}
+\def\@Eassociatedept{Department of Electirical Engineering, Kochi National College of Technology}
+%%%%%%%%%%%%%%%%%%%%%% Style setting %%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{myheadings}
+\def\left@margin{20mm}
+\def\right@margin{20mm}
+\def\top@margin{25mm}
+\def\bot@margin{25mm}
+\setlength{\columnsep}{5mm}
+\setlength{\oddsidemargin}{\left@margin}
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{\left@margin}
+\addtolength{\evensidemargin}{-1in}
+\setlength{\textwidth}{210mm}
+\addtolength{\textwidth}{-\left@margin}
+\addtolength{\textwidth}{-\right@margin}
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{5mm}
+\setlength{\footskip}{15mm}
+\setlength{\topmargin}{\top@margin}
+\addtolength{\topmargin}{-1in}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+\addtolength{\topmargin}{-3mm}
+\setlength{\textheight}{297mm}
+\addtolength{\textheight}{-\top@margin}
+\addtolength{\textheight}{-\bot@margin}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% Change for your environment %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\hoffset}{0mm}
+\setlength{\voffset}{0mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+%%
+%% End of file `knct-abstract.sty'.
