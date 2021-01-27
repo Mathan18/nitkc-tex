@@ -26,6 +26,15 @@
 % 和文はイタリックの代わりにオブリークを使う
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
 
+% フォントスタイルの定義
+\newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\userelfont\selectfont}
+\newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\userelfont\selectfont}
+\newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\userelfont\selectfont}
+\newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\userelfont\selectfont}
+
 % 研究室名，キーワード受け取り
 \def\affiliate#1{\gdef\@affiliate{#1}}\def\@affiliate{}
 \def\keywords#1{\gdef\@keywords{#1}}\def\@keywords{}
@@ -34,12 +43,12 @@
 \renewcommand{\maketitle}{
     \twocolumn[
         \begin{center}
-            {\FontsizeTitle \gtfamily\bfseries \textbf{\@title}} \\
+            {\TitleFont \@title} \\
             \vskip 10\jsc@mpt
-            {\FontsizeAuthor {\@author}*} \\
-            {\FontsizeAffiliate \@affiliate} \\
+            {\AuthorFont {\@author}*} \\
+            {\AffiliateFont \@affiliate} \\
             \vskip 10\jsc@mpt
-            {\FontsizeKeywords \jptextit{\mcfamily\bfseries キーワード} : \@keywords} \\
+            {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}} \\
         \end{center}
     ]
 }
@@ -51,7 +60,7 @@
     {1sp}% 見出し左の空き
     {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
     {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
-    {\centering \FontsizeSection \gtfamily\mdseries}% 中央揃え，フォントサイズ変更，フォント変更
+    {\centering \SectionFont}% 中央揃え，フォント変更
 }
 \makeatother
 
@@ -60,7 +69,7 @@
 \def\@arabicz#1{%
   \ifcase#1 ０\or １\or ２\or ３\or ４\or ５\or ６\or ７\or ８\or ９\or １０\else\@ctrerr\fi}
 \def\arabicz#1{\expandafter\@arabicz\csname c@#1\endcsname}
-\renewcommand{\thesection}{\gtfamily\mdseries \@arabicz\c@section．}
+\renewcommand{\thesection}{\SectionFont \@arabicz\c@section．}
 \makeatother
 
 % \subsectionの見出しのフォーマット変更
@@ -70,14 +79,13 @@
     {11pt}% 見出し左の空き
     {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
     {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
-    {\FontsizeSection \gtfamily\mdseries}% 中央揃え，フォントサイズ変更，フォント変更
+    {\SectionFont}% 中央揃え，フォント変更
 }
 \makeatother
 
 % \subsectionの数字をゴシック体に変更
-% issue: 半角数字のゴシック体が呼び出せない
 \makeatletter
-\renewcommand{\thesubsection}{\gtfamily\mdseries \@arabic\c@section.\@arabic\c@subsection}
+\renewcommand{\thesubsection}{\SectionFont \@arabic\c@section.\@arabic\c@subsection}
 \makeatother
 
 \endinput
