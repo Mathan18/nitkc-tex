@@ -1,6 +1,20 @@
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{nitkc-senkoka-chukan}
 
+% \sectionのフォーマット変更
+% コードはsecdot.styのものを流用
+% issue: 冒頭に書かないと動作しない（原因不明）
+\newcommand\sectiondot[1]{%
+  \expandafter\def\csname @seccntfmt@#1\endcsname##1{%
+    \csname the##1\endcsname \hskip 1sp
+  }
+}
+\sectiondot{section}
+\renewcommand\@seccntformat[1]{\@ifundefined{@seccntfmt@#1}%
+  {\csname the#1\endcsname\quad}% original default style
+  {\csname @seccntfmt@#1\endcsname{#1}}%
+}
+
 % フォントサイズ指定，行送りの値は適当
 \newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{30}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{10}{14}}
@@ -34,9 +48,36 @@
 \makeatletter
 \renewcommand{\section}{
     \@startsection{section}{1}
-    {\z@}% #3 見出し左の空き
+    {1sp}% 見出し左の空き
     {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
     {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
-    {\centering \FontsizeSection \gtfamily\bfseries}% 中央揃え，フォントサイズ変更，フォント変更
+    {\centering \FontsizeSection \gtfamily\mdseries}% 中央揃え，フォントサイズ変更，フォント変更
 }
 \makeatother
+
+% \sectionの数字を全角に変更，ピリオドの規定
+\makeatletter
+\def\@arabicz#1{%
+  \ifcase#1 ０\or １\or ２\or ３\or ４\or ５\or ６\or ７\or ８\or ９\or １０\else\@ctrerr\fi}
+\def\arabicz#1{\expandafter\@arabicz\csname c@#1\endcsname}
+\renewcommand{\thesection}{\gtfamily\mdseries \@arabicz\c@section．}
+\makeatother
+
+% \subsectionの見出しのフォーマット変更
+\makeatletter
+\renewcommand{\subsection}{
+    \@startsection{subsection}{2}
+    {11pt}% 見出し左の空き
+    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
+    {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
+    {\FontsizeSection \gtfamily\mdseries}% 中央揃え，フォントサイズ変更，フォント変更
+}
+\makeatother
+
+% \subsectionの数字をゴシック体に変更
+% issue: 半角数字のゴシック体が呼び出せない
+\makeatletter
+\renewcommand{\thesubsection}{\gtfamily\mdseries \@arabic\c@section.\@arabic\c@subsection}
+\makeatother
+
+\endinput
