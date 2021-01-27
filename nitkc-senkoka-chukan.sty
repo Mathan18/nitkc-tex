@@ -48,7 +48,7 @@
             {\AuthorFont {\@author}*} \\
             {\AffiliateFont \@affiliate} \\
             \vskip 10\jsc@mpt
-            {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}} \\
+            {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}}
         \end{center}
     ]
 }
@@ -57,14 +57,12 @@
 \makeatletter
 \renewcommand{\section}{
     \@startsection{section}{1}
-    {1sp}% 見出し左の空き
-    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
-    {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
+    {1sp}{1sp}{1sp}% 見出し左，上，下の空き
     {\centering \SectionFont}% 中央揃え，フォント変更
 }
 \makeatother
 
-% \sectionの数字を全角に変更，ピリオドの規定
+% \sectionの数字とピリオドを全角に変更
 \makeatletter
 \def\@arabicz#1{%
   \ifcase#1 ０\or １\or ２\or ３\or ４\or ５\or ６\or ７\or ８\or ９\or １０\else\@ctrerr\fi}
@@ -77,13 +75,12 @@
 \renewcommand{\subsection}{
     \@startsection{subsection}{2}
     {11pt}% 見出し左の空き
-    {1.5\Cvs \@plus.5\Cvs \@minus.2\Cvs}% 見出し上の空き
-    {.5\Cvs \@plus.3\Cvs}% 見出し下の空き
-    {\SectionFont}% 中央揃え，フォント変更
+    {1sp}{1sp}% 見出し上，下の空き
+    {\SectionFont}% フォント変更
 }
 \makeatother
 
-% \subsectionの数字をゴシック体に変更
+% \subsectionの数字のフォント変更
 \makeatletter
 \renewcommand{\thesubsection}{\SectionFont \@arabic\c@section.\@arabic\c@subsection}
 \makeatother
