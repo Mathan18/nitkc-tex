@@ -15,13 +15,14 @@
     {\csname @seccntfmt@#1\endcsname{#1}}
 }
 
-% フォントサイズ指定，行送りの値は適当
+% フォントサイズ指定
 \newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{21}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
-\newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{9}{13}}
+\newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{9}{13}}
+\newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
 \newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{9}{13}}
-\newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeAffiliate}{11}{15}}
-\newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
+\newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeSection}{11}{15}}
+\newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeText}{10}{14}}
 \newcommand{\FontsizeCitation}{\jsc@setfontsize{\FontsizeCitation}{7}{10}}
 
 % 和文はイタリックの代わりにオブリークを使う
@@ -30,6 +31,7 @@
 % フォントスタイルの定義
 \newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\userelfont\selectfont}
 \newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\DepartmentFont}{\FontsizeDepartment\mcfamily\mdseries\userelfont\selectfont}
 \newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\userelfont\selectfont}
 \newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\userelfont\selectfont}
 \newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\userelfont\selectfont}
@@ -44,9 +46,16 @@
 \def\@cite#1{#1\if@tempswa\fi)}
 \newcommand{\citations}[1]{$^{\hbox{\CitationFont{#1}}}$}
 
-% 研究室名，キーワード受け取り
+% 所属専攻，研究室，キーワード受け取り
+\def\department#1{\gdef\@department{#1}}\def\@department{}
 \def\affiliate#1{\gdef\@affiliate{#1}}\def\@affiliate{}
 \def\keywords#1{\gdef\@keywords{#1}}\def\@keywords{}
+
+% 脚注スタイル変更
+\renewcommand\thefootnote{\FontsizeAffiliate *}
+
+% 所属専攻と研究室を脚注に記述
+\newcommand\DepartmentAndAffiliate{\FontsizeAffiliate \@department　\@affiliate}
 
 % タイトル部のフォーマット変更，本文の2段組指定
 \renewcommand{\maketitle}{
@@ -54,12 +63,14 @@
         \begin{center}
             {\TitleFont \@title} \\
             \vskip 10\jsc@mpt
-            {\AuthorFont {\@author}*} \\
-            {\AffiliateFont \@affiliate} \\
+            {\AuthorFont \@author\footnotemark} \\
+            {\DepartmentFont \@department} \\
             \vskip 10\jsc@mpt
             {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}}
         \end{center}
+        
     ]
+    \footnotetext{\DepartmentAndAffiliate}
 }
 
 % \sectionの見出しのフォーマット変更
