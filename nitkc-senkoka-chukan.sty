@@ -2,17 +2,17 @@
 \ProvidesPackage{nitkc-senkoka-chukan}
 
 % \sectionのフォーマット変更
-% コードはsecdot.styのものを流用
+% コードはsecdot.sty(https://www.ctan.org/pkg/secdot)のものを流用
 % issue: 冒頭に書かないと動作しない（原因不明）
-\newcommand\sectiondot[1]{%
-  \expandafter\def\csname @seccntfmt@#1\endcsname##1{%
-    \csname the##1\endcsname \hskip 1sp
-  }
+\newcommand\sectiondot[1]{
+    \expandafter\def\csname @seccntfmt@#1\endcsname##1{
+        \csname the##1\endcsname \hskip 1sp
+    }
 }
 \sectiondot{section}
-\renewcommand\@seccntformat[1]{\@ifundefined{@seccntfmt@#1}%
-  {\csname the#1\endcsname\quad}% original default style
-  {\csname @seccntfmt@#1\endcsname{#1}}%
+\renewcommand\@seccntformat[1]{\@ifundefined{@seccntfmt@#1}
+    {\csname the#1\endcsname\quad}
+    {\csname @seccntfmt@#1\endcsname{#1}}
 }
 
 % フォントサイズ指定，行送りの値は適当
@@ -22,6 +22,7 @@
 \newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{9}{13}}
 \newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeAffiliate}{11}{14}}
 \newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
+\newcommand{\FontsizeCitation}{\jsc@setfontsize{\FontsizeCitation}{10}{14}}
 
 % 和文はイタリックの代わりにオブリークを使う
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
@@ -34,6 +35,14 @@
 \newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\userelfont\selectfont}
 \newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\userelfont\selectfont}
 \newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\userelfont\selectfont}
+
+% 引用スタイル変更
+\DeclareRobustCommand\cite{\unskip
+    \@ifnextchar [{\@tempswatrue\@citex}{\@tempswafalse\@citex[]}
+}
+\def\@cite#1{#1\if@tempswa\fi)}
+\newcommand{\citations}[1]{$^{\hbox{\CitationFont{#1}}}$}
 
 % 研究室名，キーワード受け取り
 \def\affiliate#1{\gdef\@affiliate{#1}}\def\@affiliate{}
@@ -74,7 +83,7 @@
 \makeatletter
 \renewcommand{\subsection}{
     \@startsection{subsection}{2}
-    {11pt}% 見出し左の空き
+    {10pt}% 見出し左の空き
     {1sp}{1sp}% 見出し上，下の空き
     {\SectionFont}% フォント変更
 }
