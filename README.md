@@ -14,3 +14,7 @@
 
 [GoogleDrive](https://drive.google.com/drive/folders/1jOq6MtqWayMYRZn6KhJhkcl27fzU33CQ?usp=sharing)に過去のTeXフォーマットなどを置いています．  
 閲覧・編集は高知高専Gmailのアカウントを利用してください．
+
+## バグ・改善の報告
+
+バグを見つけた場合や、改善して欲しい内容がある場合はissue へコメントしてください。詳しくは[こちら](docs/CONTRIBUTING.md)をご覧ください
