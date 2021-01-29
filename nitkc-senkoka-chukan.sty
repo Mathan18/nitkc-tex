@@ -15,6 +15,27 @@
     {\csname @seccntfmt@#1\endcsname{#1}}
 }
 
+% ページのレイアウト変更
+% 段組みの間隔 = 6mm
+\setlength{\columnsep}{6mm}
+% 用紙上端から本文領域まで topmargin + headheight + headsep = 30mm
+% 上余白 = 1インチ(25.4mm) + 4.6mm = 30mm
+\setlength{\topmargin}{4.6mm}
+% ヘッダ領域 = 0mm
+\setlength{\headheight}{1sp}
+% ヘッダ下余白 = 0mm
+\setlength{\headsep}{1sp}
+% 奇数ページ左余白 = 1インチ(25.4mm) - 5.4mm = 20mm
+\setlength{\oddsidemargin}{-5.4mm}
+% 偶数ページ左余白 = 1インチ(25.4mm) - 5.4mm = 20mm
+\setlength{\evensidemargin}{-5.4mm}
+% 本文領域横幅 = A4横幅(210mm) - 左余白(20mm) - 右余白(20mm) = 170mm
+\setlength{\textwidth}{170mm}
+% 本文領域高さ = A4高さ(297mm) - 本文領域上余白30mm - 下余白20mm = 247mm
+\setlength{\textheight}{247mm}
+% 本文領域下端からフッタ下端 = 0mm
+\setlength{\footskip}{1sp}
+
 % フォントサイズ指定
 \newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{21}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
@@ -67,6 +88,10 @@
 % タイトル部のフォーマット変更，本文の2段組指定
 \renewcommand{\maketitle}{
     \twocolumn[
+        
+        \begin{center}
+        % 本文領域横幅 = A4横幅(210mm) - 左余白(45mm) - 右余白(45mm) = 120mm
+        \begin{minipage}{120mm}
         \begin{center}
             {\TitleFont \@title} \\
             \vskip 10\jsc@mpt
@@ -74,6 +99,8 @@
             {\DepartmentFont \@department} \\
             \vskip 10\jsc@mpt
             {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}}
+        \end{center}
+        \end{minipage}
         \end{center}
     ]
     \footnotetext{\DepartmentAndAffiliate}
