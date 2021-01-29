@@ -124,9 +124,9 @@
     \advance\leftskip .0628\linewidth
     \advance\rightskip .0628\linewidth
     \vskip\abovecaptionskip
-    \sbox\@tempboxa{{\CaptionNumFont #1}\hskip1zw\relax {\CaptionTextFont #2}}%
+    \sbox\@tempboxa{{\CaptionNumFont #1}~\relax {\CaptionTextFont #2}}%
     \ifdim \wd\@tempboxa <\hsize \centering \fi
-    {\CaptionNumFont #1}{\hskip1zw\relax}{\CaptionTextFont #2}\par
+    {\CaptionNumFont #1}{~\relax}{\CaptionTextFont #2}\par
     \vskip\belowcaptionskip
 }}
 \makeatother
