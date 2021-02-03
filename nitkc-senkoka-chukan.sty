@@ -21,6 +21,7 @@
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{nitkc-senkoka-chukan}
 
+
 % \sectionのフォーマット変更
 % コードはsecdot.sty(https://www.ctan.org/pkg/secdot)のものを流用
 % issue: 冒頭に書かないと動作しない（原因不明）
@@ -60,7 +61,7 @@
 \pagestyle{empty}
 
 % フォントサイズ指定
-\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{21}}
+\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{30}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
 \newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{9}{13}}
 \newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
@@ -106,23 +107,22 @@
 }
 
 % 所属専攻と研究室を脚注に記述
-\newcommand\DepartmentAndAffiliate{\FontsizeAffiliate \@department　\@affiliate}
+\newcommand\DepartmentAndAffiliate{\FontsizeAffiliate \@department　\@affiliate \par}
 
 % タイトル部のフォーマット変更，本文の2段組指定
 \renewcommand{\maketitle}{
     \twocolumn[
-        
         \begin{center}
         % 本文領域横幅 = A4横幅(210mm) - 左余白(45mm) - 右余白(45mm) = 120mm
         \begin{minipage}{120mm}
         \begin{center}
-            {\TitleFont \@title} \\
+            {\TitleFont \@title \par}
             \vskip 30\jsc@mpt
-            {\AuthorFont \@author\footnotemark} \\
-            {\DepartmentFont \@department} \\
+            {\AuthorFont \@author\footnotemark \par}
+            {\DepartmentFont \@department \par}
             \vskip 10\jsc@mpt
         \end{center}
-        {\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}
+        {\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords \par}
         \end{minipage}
         \vskip 20\jsc@mpt
         \end{center}
