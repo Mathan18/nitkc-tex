@@ -78,17 +78,17 @@
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
 
 % フォントスタイルの定義
-\newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\userelfont\selectfont}
-\newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\DepartmentFont}{\FontsizeDepartment\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\userelfont\selectfont}
-\newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\userelfont\selectfont}
-\newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\CaptionNumFont}{\FontsizeCaption\mcfamily\bfseries\userelfont\selectfont}
-\newcommand{\CaptionTextFont}{\FontsizeCaption\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\selectfont}
+\newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\selectfont}
+\newcommand{\DepartmentFont}{\FontsizeDepartment\mcfamily\mdseries\selectfont}
+\newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\selectfont}
+\newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\selectfont}
+\newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\selectfont}
+\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\selectfont}
+\newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\selectfont}
+\newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\selectfont}
+\newcommand{\CaptionNumFont}{\FontsizeCaption\mcfamily\bfseries\selectfont}
+\newcommand{\CaptionTextFont}{\FontsizeCaption\mcfamily\mdseries\selectfont}
 
 % 引用スタイル変更
 \DeclareRobustCommand\cite{\unskip
@@ -103,7 +103,7 @@
 \def\keywords#1{\gdef\@keywords{#1}}\def\@keywords{}
 
 % 脚注スタイル変更
-\renewcommand\thefootnote{\FontsizeAffiliate *}
+\renewcommand\thefootnote{\AffiliateFont *}
 \renewcommand{\footnoterule}{
     \kern-3\jsc@mpt
     \hrule width \columnwidth height 0.4\jsc@mpt \kern 2.6\jsc@mpt
@@ -111,7 +111,7 @@
 \setlength{\skip\footins}{10\jsc@mpt}
 
 % 所属専攻と研究室を脚注に記述
-\newcommand\DepartmentAndAffiliate{\FontsizeAffiliate \@department　\@affiliate \par}
+\newcommand\DepartmentAndAffiliate{\AffiliateFont \@department　\@affiliate \par}
 
 % タイトル部のフォーマット変更，本文の2段組指定
 \renewcommand{\maketitle}{
