@@ -21,6 +21,7 @@
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesPackage{nitkc-senkoka-chukan}
 
+
 % \sectionのフォーマット変更
 % コードはsecdot.sty(https://www.ctan.org/pkg/secdot)のものを流用
 % issue: 冒頭に書かないと動作しない（原因不明）
@@ -59,8 +60,11 @@
 % ページ番号削除
 \pagestyle{empty}
 
+% デフォルトの行送り変更
+\def\n@baseline{14}
+
 % フォントサイズ指定
-\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{21}}
+\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{30}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
 \newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{9}{13}}
 \newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
@@ -68,23 +72,23 @@
 \newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeSection}{11}{15}}
 \newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeText}{10}{14}}
 \newcommand{\FontsizeCitation}{\jsc@setfontsize{\FontsizeCitation}{7}{10}}
-\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{10}{14}}
+\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{9}{13}}
 
 % 和文はイタリックの代わりにオブリークを使う
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
 
 % フォントスタイルの定義
-\newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\userelfont\selectfont}
-\newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\DepartmentFont}{\FontsizeDepartment\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\userelfont\selectfont}
-\newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\userelfont\selectfont}
-\newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\userelfont\selectfont}
-\newcommand{\CaptionNumFont}{\FontsizeCaption\mcfamily\bfseries\userelfont\selectfont}
-\newcommand{\CaptionTextFont}{\FontsizeCaption\mcfamily\mdseries\userelfont\selectfont}
+\newcommand{\TitleFont}{\FontsizeTitle\gtfamily\bfseries\selectfont}
+\newcommand{\AuthorFont}{\FontsizeAuthor\mcfamily\mdseries\selectfont}
+\newcommand{\DepartmentFont}{\FontsizeDepartment\mcfamily\mdseries\selectfont}
+\newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\selectfont}
+\newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\selectfont}
+\newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\selectfont}
+\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\selectfont}
+\newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\selectfont}
+\newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\selectfont}
+\newcommand{\CaptionNumFont}{\FontsizeCaption\mcfamily\bfseries\selectfont}
+\newcommand{\CaptionTextFont}{\FontsizeCaption\mcfamily\mdseries\selectfont}
 
 % 引用スタイル変更
 \DeclareRobustCommand\cite{\unskip
@@ -99,31 +103,33 @@
 \def\keywords#1{\gdef\@keywords{#1}}\def\@keywords{}
 
 % 脚注スタイル変更
-\renewcommand\thefootnote{\FontsizeAffiliate *}
+\renewcommand\thefootnote{\AffiliateFont *}
 \renewcommand{\footnoterule}{
     \kern-3\jsc@mpt
     \hrule width \columnwidth height 0.4\jsc@mpt \kern 2.6\jsc@mpt
 }
+\setlength{\skip\footins}{5\jsc@mpt}
 
 % 所属専攻と研究室を脚注に記述
-\newcommand\DepartmentAndAffiliate{\FontsizeAffiliate \@department　\@affiliate}
+\newcommand\DepartmentAndAffiliate{\AffiliateFont \@department　\@affiliate \par}
 
 % タイトル部のフォーマット変更，本文の2段組指定
 \renewcommand{\maketitle}{
     \twocolumn[
-        
         \begin{center}
         % 本文領域横幅 = A4横幅(210mm) - 左余白(45mm) - 右余白(45mm) = 120mm
         \begin{minipage}{120mm}
         \begin{center}
-            {\TitleFont \@title} \\
+            {\TitleFont \@title \par}
+            \vskip 30\jsc@mpt
+            {\AuthorFont \@author\footnotemark \par}
+            \vskip 5\jsc@mpt
+            {\DepartmentFont \@department \par}
             \vskip 10\jsc@mpt
-            {\AuthorFont \@author\footnotemark} \\
-            {\DepartmentFont \@department} \\
-            \vskip 10\jsc@mpt
-            {{\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords}}
         \end{center}
+        {\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords \par}
         \end{minipage}
+        \vskip 20\jsc@mpt
         \end{center}
     ]
     \footnotetext{\DepartmentAndAffiliate}
@@ -167,6 +173,12 @@
 \renewcommand{\tablename}{Table~}
 \makeatother
 
+% 図表と本文の間の余白
+\makeatletter
+\setlength\intextsep{1sp}
+\setlength\textfloatsep{1sp}
+\makeatother
+
 % キャプションのスタイル変更
 \makeatletter
 \long\def\@makecaption#1#2{{
@@ -180,6 +192,12 @@
     \vskip\belowcaptionskip
 }}
 \makeatother
+
+% 数式の余白変更
+\AtBeginDocument{\setlength{\abovedisplayskip}{1pt}}
+\AtBeginDocument{\setlength{\abovedisplayshortskip}{\abovedisplayskip}}
+\AtBeginDocument{\setlength{\belowdisplayskip}{1pt}}
+\AtBeginDocument{\setlength{\belowdisplayshortskip}{\belowdisplayskip}}
 
 % 参考文献のスタイル変更
 \makeatletter
