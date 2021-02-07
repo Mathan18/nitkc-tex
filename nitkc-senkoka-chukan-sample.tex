@@ -51,8 +51,7 @@
 % 任意な読み込み
 % ここに\usepackageを記述
 % 下記のパッケージは既にnitkc-senkoka-chukan-preamble.texで読み込み済み
-% ・otf, pxchfon, graphicx
-\usepackage{amsmath, amssymb}
+% ・otf, pxchfon, graphicx, amsmath, amssymb
 
 
 % タイトル
@@ -87,7 +86,7 @@
 \section{利用方法}
 引用例\citations{\cite{zasshisample}〜\cite{tankoubon}}．
 
-図の例をFig.\ref{fig:sample}に示す．
+図の例をFig. \ref{fig:sample}に示す．
 
 \begin{figure}[htbp]
 \centering
@@ -113,9 +112,21 @@ dat3 & dat4 \\
 \end{table}
 
 図表中の語句・説明文は英語(9pt,Times New Roman)にしてください．
-変数名はイタリックにしてください．
-\section{結　　言}
+変数名は{\itshape A}のようにイタリックにしてください．
 
+数式は以下のように挿入します．
+\begin{eqnarray}
+f(x)=a_0+\sum_{n=1}^\infty (a_n\cos\frac{n\pi x}{L}+b_n\sin\frac{n\pi x}{L})
+\end{eqnarray}
+数式番号は自動で挿入されます．
+\begin{equation}
+    y = \sin x  \label{eq:1}
+\end{equation}
+数式は\eqref{eq:1}式のように参照します．
+
+
+\section{結　　言}
+おしまい
 
 \section*{謝　　辞}
 ありがとうございました．
