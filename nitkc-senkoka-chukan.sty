@@ -52,8 +52,8 @@
 \setlength{\evensidemargin}{-5.4mm}
 % 本文領域横幅 = A4横幅(210mm) - 左余白(20mm) - 右余白(20mm) = 170mm
 \setlength{\textwidth}{170mm}
-% 本文領域高さ = A4高さ(297mm) - 本文領域上余白30mm - 下余白20mm = 247mm
-\setlength{\textheight}{247mm}
+% 本文領域高さ = A4高さ(297mm) - 本文領域上余白30mm - 下余白13mm = 254mm
+\setlength{\textheight}{254mm}
 % 本文領域下端からフッタ下端 = 0mm
 \setlength{\footskip}{1sp}
 
@@ -64,15 +64,15 @@
 \def\n@baseline{14}
 
 % フォントサイズ指定
-\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{15}{30}}
+\newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{17}{30}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
-\newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{9}{13}}
+\newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{10}{13}}
 \newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
-\newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{9}{13}}
+\newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{10}{13}}
 \newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeSection}{11}{15}}
 \newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeText}{10}{14}}
 \newcommand{\FontsizeCitation}{\jsc@setfontsize{\FontsizeCitation}{7}{10}}
-\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{9}{13}}
+\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{10}{13}}
 
 % 和文はイタリックの代わりにオブリークを使う
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
@@ -121,15 +121,15 @@
         \begin{minipage}{120mm}
         \begin{center}
             {\TitleFont \@title \par}
-            \vskip 30\jsc@mpt
+            \vskip 37\jsc@mpt
             {\AuthorFont \@author\footnotemark \par}
-            \vskip 5\jsc@mpt
+            \vskip 8\jsc@mpt
             {\DepartmentFont \@department \par}
-            \vskip 10\jsc@mpt
+            \vskip 12\jsc@mpt
         \end{center}
-        {\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~:~\@keywords \par}
+        {\KeywordsTitleFont \jptextit{キーワード}}{\KeywordsFont~: ~\@keywords \par}
         \end{minipage}
-        \vskip 20\jsc@mpt
+        \vskip 30\jsc@mpt
         \end{center}
     ]
     \footnotetext{\DepartmentAndAffiliate}
@@ -194,9 +194,9 @@
 \makeatother
 
 % 数式の余白変更
-\AtBeginDocument{\setlength{\abovedisplayskip}{1pt}}
+\AtBeginDocument{\setlength{\abovedisplayskip}{2pt}}
 \AtBeginDocument{\setlength{\abovedisplayshortskip}{\abovedisplayskip}}
-\AtBeginDocument{\setlength{\belowdisplayskip}{1pt}}
+\AtBeginDocument{\setlength{\belowdisplayskip}{3pt}}
 \AtBeginDocument{\setlength{\belowdisplayshortskip}{\belowdisplayskip}}
 
 % 参考文献のスタイル変更
