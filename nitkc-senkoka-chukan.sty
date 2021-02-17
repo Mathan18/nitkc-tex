@@ -33,7 +33,7 @@
 \sectiondot{section}
 \renewcommand\@seccntformat[1]{\@ifundefined{@seccntfmt@#1}
     {\csname the#1\endcsname\quad}
-    {\csname @seccntfmt@#1\endcsname{#1}}
+    {\csname @seccntfmt@#1\endcsname{#1}．\hskip 1sp}
 }
 
 % ページのレイアウト変更
@@ -66,13 +66,13 @@
 % フォントサイズ指定
 \newcommand{\FontsizeTitle}{\jsc@setfontsize{\FontsizeTitle}{17}{30}}
 \newcommand{\FontsizeAuthor}{\jsc@setfontsize{\FontsizeAuthor}{12}{17}}
-\newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{10}{13}}
+\newcommand{\FontsizeDepartment}{\jsc@setfontsize{\FontsizeDepartment}{10}{14}}
 \newcommand{\FontsizeAffiliate}{\jsc@setfontsize{\FontsizeAffiliate}{10}{14}}
-\newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{10}{13}}
-\newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeSection}{11}{15}}
+\newcommand{\FontsizeKeywords}{\jsc@setfontsize{\FontsizeKeywords}{10}{14}}
+\newcommand{\FontsizeSection}{\jsc@setfontsize{\FontsizeSection}{11}{14}}
 \newcommand{\FontsizeText}{\jsc@setfontsize{\FontsizeText}{10}{14}}
 \newcommand{\FontsizeCitation}{\jsc@setfontsize{\FontsizeCitation}{7}{10}}
-\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{10}{13}}
+\newcommand{\FontsizeCaption}{\jsc@setfontsize{\FontsizeCaption}{9}{13}}
 
 % 和文はイタリックの代わりにオブリークを使う
 \def\jptextit#1{\makebox[5zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
@@ -84,7 +84,7 @@
 \newcommand{\AffiliateFont}{\FontsizeAffiliate\mcfamily\mdseries\selectfont}
 \newcommand{\KeywordsTitleFont}{\FontsizeKeywords\mcfamily\bfseries\selectfont}
 \newcommand{\KeywordsFont}{\FontsizeKeywords\mcfamily\mdseries\selectfont}
-\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\selectfont}
+\newcommand{\SectionFont}{\FontsizeSection\gtfamily\mdseries\userelfont\selectfont}
 \newcommand{\TextFont}{\FontsizeText\mcfamily\mdseries\selectfont}
 \newcommand{\CitationFont}{\FontsizeCitation\mcfamily\mdseries\selectfont}
 \newcommand{\CaptionNumFont}{\FontsizeCaption\mcfamily\bfseries\selectfont}
@@ -149,7 +149,7 @@
 \def\@arabicz#1{%
   \ifcase#1 ０\or １\or ２\or ３\or ４\or ５\or ６\or ７\or ８\or ９\or １０\else\@ctrerr\fi}
 \def\arabicz#1{\expandafter\@arabicz\csname c@#1\endcsname}
-\renewcommand{\thesection}{\SectionFont \@arabicz\c@section．}
+\renewcommand{\thesection}{\SectionFont \@arabicz\c@section}
 \makeatother
 
 % \subsectionの見出しのフォーマット変更

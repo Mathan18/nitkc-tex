@@ -23,18 +23,17 @@
 \usepackage{newpxtext}
 
 % 日本語フォント設定
-\usepackage[deluxe, jis2004]{otf}
-% \usepackage[relfont, usecmapforalphabet, noalphabet]{pxchfon}
-\usepackage[noalphabet]{pxchfon}
+\usepackage[deluxe]{otf}
+\usepackage[relfont]{pxchfon}
 \usepackage[dvipdfmx]{graphicx}
-% \setmediumminchofont{HaranoAjiMincho-Medium.otf} % \mcfamily\mdseries
-\setboldminchofont{HaranoAjiMincho-Bold.otf} % \mcfamily\bfseries
-% \setmediumgothicfont{HaranoAjiGothic-Medium.otf} % \gtfamily\mdseries
-\setboldgothicfont{HaranoAjiGothic-Bold.otf} % \gtfamily\bfseries
 
-% msフォント導入
-\setmediumminchofont{msmincho.ttc} % \mcfamily\mdseries
-\setboldgothicfont{msgothic.ttc} % \mcfamily\mdseries
+% 通常ウェイトはmsフォント，ボールドはHGフォント
+\setminchofont[0]{msmincho.ttc} 
+\setboldminchofont[0]{HGRME.ttc} 
+\setgothicfont[0]{msgothic.ttc} 
+\setmediumgothicfont[0]{msgothic.ttc} 
+\setboldgothicfont[0]{HGRGE.ttc} 
+\setxboldgothicfont[0]{HGRSGU.ttc} 
 
 % 数式まわり
 \usepackage{amsmath, amssymb}

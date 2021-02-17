@@ -36,7 +36,7 @@
 %% 諸注意
 %% ・本文中で使用するフォントスタイルは既に定義されています
 %% 　特殊な事情がない限りは，これらのスタイルを使用してください
-%% 　本文：\TextFont
+%% 　本文：\TextFont，太字：\bfseriese
 %% ・その他フォーマットに関する詳細な指定は本文に記述されています
 %% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -51,7 +51,8 @@
 % 任意な読み込み
 % ここに\usepackageを記述
 % 下記のパッケージは既にnitkc-senkoka-chukan-preamble.texで読み込み済み
-% ・otf, pxchfon, graphicx, amsmath, amssymb
+% ・[T1]fontenc, newpxtext, [deluxe]otf, [userelfont]pxchfon
+% ・graphicx, amsmath, amssymb, mathtools
 
 
 % タイトル
@@ -81,9 +82,11 @@
 \section{緒　　言}
 このフォーマットは，特別研究中間発表会要旨の独自製作{\LaTeX}フォーマットです．このフォーマットの開発はGitHub（https://github.com/ebifly5011/nitkc-tex）で行われています．是非アイデアやご意見をお寄せください．
 
-{\LaTeX}の基本操作や環境設定，書きかたなどはWeb情報がありますのでそちらをご覧ください．
+{\LaTeX}の基本操作や環境設定，書きかたなどはWeb情報をご覧ください．
 
-\section{利用方法}
+\section{利用方法}\label{sec:sample}
+ここは{\ref{sec:sample}}章です．
+
 引用例\citations{\cite{zasshisample}〜\cite{tankoubon}}．
 
 図の例をFig. \ref{fig:sample}に示す．
